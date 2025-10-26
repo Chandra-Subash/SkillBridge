@@ -1,0 +1,131 @@
+
+:root {
+  --primary-blue: #0048d0;
+  --text-gray: #8a8a8a;
+  --text-dark: #333;
+}
+
+.profile-page-container {
+  width: 100%;
+}
+
+.profile-page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.profile-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  max-width: 840px; 
+}
+
+
+.profile-card-header {
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+  padding-bottom: 25px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #f0f0f0; 
+}
+
+.profile-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-user-info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.profile-user-info span {
+  color: var(--text-gray);
+  margin-top: 2px;
+}
+
+.role-badge {
+  color: var(--text-dark) !important;
+  font-weight: 600;
+  margin-top: 5px !important;
+}
+
+.profile-card-body {
+  padding-top: 25px;
+}
+
+.info-block {
+  margin-bottom: 25px; 
+}
+
+.info-block label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-gray);
+  margin-bottom: 5px;
+}
+
+.info-block p,
+.info-block .website-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.info-block .website-link {
+  color: var(--primary-blue);
+  text-decoration: none;
+}
+
+.info-block .website-link:hover {
+  text-decoration: underline;
+}
+
+
+.profile-card-footer {
+  display: flex;
+  justify-content: center; 
+  padding-top: 15px;
+  margin-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.edit-button {
+  padding: 12px 35px;
+  background-color: var(--primary-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #003da8;
+}
+.loading-message,
+.error-message {
+  font-size: 1.2rem;
+  color: var(--text-gray);
+  padding: 40px;
+  text-align: center;
+}
+
