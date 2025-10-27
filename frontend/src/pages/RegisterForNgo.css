@@ -225,3 +225,15 @@ body{
   font-weight: 800;
   font-style: italic;
 }
+
+
+
+.error-message {
+  color: red;
+  background-color: #ffebee;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}

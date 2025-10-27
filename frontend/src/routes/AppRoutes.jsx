@@ -29,7 +29,7 @@ function AppRoutes() {
 
 
        
-        <Route path="/" element={<Navigate replace to="/register"/>}/>
+        <Route path="/" element={<Navigate replace to="/login"/>}/>
       </Routes>
     </Router>
   );

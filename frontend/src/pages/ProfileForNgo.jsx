@@ -1,105 +1,153 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ProfileForNgo.css';
+import './ProfileForNgo.css'; 
 
 import defaultAvatar from '../assets/images/pic.png'; 
 
-// --- THIS IS YOUR FALLBACK MOCK DATA ---
-// It will only be used if localStorage is empty
-const getMockData = () => {
-  return {
-    Organisation: "Helping Hands Foundation",
-    username: "@helpinghands",
-    email: "helpinghands@gmail.com",
-    role: "NGO",
-    location: "New York, NY",
-    website: "https://helpinghands.org",
-    Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    avatarUrl: defaultAvatar,
-    fullname: "Helping Hands"
-  };
-};
-// ----------------------------------------
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
 function ProfileForNgo() {
   const [profileData, setProfileData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+ 
   useEffect(() => {
-    function loadProfile() {
+   
+    const loadProfile = async () => {
+      setIsLoading(true);
+      setError(null);
+      const token = localStorage.getItem('authToken'); 
+
+
+      if (!token) {
+        setError("Not authorized. Please log in.");
+        setIsLoading(false);
+        
+        return; 
+      }
+
       try {
-        console.log("Loading profile...");
+        console.log("Fetching profile data from API...");
         
-        // 1. Try to get the profile from localStorage
-        const savedData = localStorage.getItem('userProfile');
         
-        if (savedData) {
-          // If we found saved data, use it
-          console.log("Found saved data!");
-          setProfileData(JSON.parse(savedData));
-        } else {
-          // 2. If no data is saved, load the mock data
-          console.log("No saved data, loading mock data.");
-          const mockData = getMockData();
-          setProfileData(mockData);
-          
-          // And save the mock data to localStorage for next time
-          localStorage.setItem('userProfile', JSON.stringify(mockData));
+        const response = await fetch(`${API_URL}/users/profile`, {
+          method: 'GET',
+          headers: {
+           
+            'Authorization': `Bearer ${token}` 
+          }
+        });
+
+        
+        const data = await response.json();
+
+        
+        if (!response.ok) {
+        
+          throw new Error(data.error || 'Failed to fetch profile data');
         }
-      } catch (error) {
-        console.error("Error loading profile:", error);
+        
+        
+        console.log("Profile data received:", data.user);
+        setProfileData(data); 
+
+      } catch (err) {
+        
+        console.error("Error loading profile:", err);
+        setError(err.message);
       } finally {
+       
         setIsLoading(false);
       }
-    }
+    };
+    
     
     loadProfile();
-  }, []); // The empty [] means this runs only ONCE
+    
+  }, []);
 
+  
   const handleEditClick = () => {
     navigate('/dashboard/profile/edit'); 
   };
 
+  
   if (isLoading) {
     return <div className="loading-message">Loading Profile...</div>;
   }
 
+  
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
+  
+ 
   if (!profileData) {
-    return <div className="error-message">Could not load profile.</div>;
+    return <div className="error-message">Could not load profile data.</div>;
   }
 
-  // 3. This return part is the same, but it now shows the saved data
+ 
   return (
     <div className="profile-page-container">
       <h1 className="profile-page-title">Profile</h1>
+
       <div className="profile-card">
+        
         <div className="profile-card-header">
-          {/* This will now show your new Base64 image! */}
-          <img src={profileData.avatarUrl} alt="Avatar" className="profile-avatar" />
+          
+          <img src={profileData.avatarUrl || defaultAvatar} alt="Avatar" className="profile-avatar" />
           <div className="profile-user-info">
-            <h2>{profileData.Organisation}</h2>
+        
+            <h2>{profileData.organization_name || profileData.name}</h2> 
             <span>{profileData.username}</span>
             <span>{profileData.email}</span>
-            <span className="role-badge">Role: NGO</span>
+            <span className="role-badge">Role: {profileData.role}</span> 
           </div>
         </div>
+
+      
         <div className="profile-card-body">
           <div className="info-block">
             <label>Location</label>
-            <p>{profileData.location}</p>
+            <p>{profileData.location || 'Not specified'}</p>
           </div>
-          <div className="info-block">
-            <label>Website</label>
-            <a href={profileData.website} target="_blank" rel="noopener noreferrer" className="website-link">
-              {profileData.website}
-            </a>
-          </div>
-          <div className="info-block">
-            <label>Description</label>
-            <p>{profileData.Description}</p>
-          </div>
+        
+          {profileData.role === 'ngo' && (
+            <>
+              <div className="info-block">
+                <label>Website</label>
+                {profileData.website_url ? (
+                   <a href={profileData.website_url} target="_blank" rel="noopener noreferrer" className="website-link">
+                     {profileData.website_url}
+                   </a>
+                ) : (
+                  <p>Not specified</p>
+                )}
+              </div>
+              <div className="info-block">
+                <label>Description</label>
+                <p>{profileData.organization_description || 'Not specified'}</p>
+              </div>
+            </>
+          )}
+          
+           {profileData.role === 'volunteer' && profileData.skills && profileData.skills.length > 0 && (
+             <div className="info-block">
+               <label>Skills</label>
+               <p>{profileData.skills.join(', ')}</p> 
+             </div>
+           )}
+           {profileData.bio && (
+             <div className="info-block">
+               <label>Bio</label>
+               <p>{profileData.bio}</p> 
+             </div>
+           )}
         </div>
+
+     
         <div className="profile-card-footer">
           <button className="edit-button" onClick={handleEditClick}>
             Edit
@@ -111,3 +159,5 @@ function ProfileForNgo() {
 }
 
 export default ProfileForNgo;
+
+
