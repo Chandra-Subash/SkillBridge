@@ -5,8 +5,9 @@ import RegisterForVolunteer from "../pages/RegisterForVolunteer";
 import ProfileEditFormForNgo from "../pages/ProfileEditFormForNgo";
 import DashboardForNgo from "../pages/DashboardForNgo";
 import ProfileForNgo from "../pages/ProfileForNgo";
-
 import DashboardHome from "../pages/DashboardHome";
+
+import Applications from "../pages/Applications";
 
 function AppRoutes() {
   return (
@@ -25,6 +26,7 @@ function AppRoutes() {
           <Route path="home" element={<DashboardHome/>}/>
           <Route path="profile" element={<ProfileForNgo/>}/>
           <Route path="profile/edit" element={<ProfileEditFormForNgo/>}/>
+          <Route path="Applications" element={<Applications/>}/>
         </Route>
 
 

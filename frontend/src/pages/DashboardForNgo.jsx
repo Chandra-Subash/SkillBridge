@@ -31,8 +31,8 @@ function DashboardForNgo() {
               <FaTachometerAlt /> <span>Dashboard</span>
             </Link>
           </li>
-          <li className={isActive('/dashboard/opportunities') ? 'active' : ''}>
-            <Link to="/dashboard/opportunities">
+          <li className={isActive('/dashboard/Applications') ? 'active' : ''}>
+            <Link to="/dashboard/Applications">
               <FaRegLightbulb /> <span>Opportunities</span>
             </Link>
           </li>
