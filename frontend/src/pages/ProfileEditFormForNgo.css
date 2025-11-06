@@ -30,7 +30,7 @@ body{
   position: relative;
   width: 130px;
   height: 130px;
-  margin: 0 auto 30px auto; /* Center the avatar */
+  margin: 0 auto 30px auto; 
 }
 
 .avatar-preview {

@@ -3,7 +3,7 @@ body{
     margin: 0;
     box-sizing: border-box;
 }
-/* --- Global Variables --- */
+
 :root {
   --primary-blue: #0048d0;
   --text-gray: #8a8a8a;
@@ -11,7 +11,6 @@ body{
   --border-light: #eee;
 }
 
-/* --- Main Layout --- */
 .dashboard-container {
   display: flex;
   width: 100vw;
@@ -20,15 +19,14 @@ body{
   font-family: Arial, sans-serif;
 }
 
-/* --- Sidebar (Left Side) --- */
 .sidebar {
   width: 260px;
-  background: #ffffff;
+  background: #6027d3;
   border-right: 1px solid var(--border-light);
   display: flex;
   flex-direction: column;
   padding: 25px;
-  flex-shrink: 0; /* Prevents sidebar from shrinking */
+  flex-shrink: 0; 
 }
 
 .logo-container {
@@ -40,15 +38,17 @@ body{
   max-width: 160px;
 }
 
-/* Navigation List */
+
 .nav-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  
 }
 
 .nav-list li {
   margin-bottom: 15px;
+ 
 }
 
 .nav-list li a {
@@ -68,18 +68,17 @@ body{
   font-size: 1.2rem;
 }
 
-/* Active Link Styling */
 .nav-list li.active a {
-  background-color: #f0f5ff; /* Light blue background */
+  background-color: #f0f5ff; 
   color: var(--primary-blue);
   position: relative;
 }
 
-/* Blue bar on the left of the active link */
+
 .nav-list li.active a::before {
   content: '';
   position: absolute;
-  left: -25px; /* Aligns with the padding of the sidebar */
+  left: -25px;
   top: 0;
   height: 100%;
   width: 5px;
@@ -87,7 +86,9 @@ body{
   border-radius: 0 4px 4px 0;
 }
 
-
+.logout{
+  margin-top: 200px;
+}
 .main-content {
   flex: 1; 
   display: flex;
@@ -101,16 +102,16 @@ body{
   background: #ffffff;
   border-bottom: 1px solid var(--border-light);
   display: flex;
-  justify-content: flex-end; /* Pushes content to the right */
+  justify-content: flex-end;
   align-items: center;
   padding: 0 40px;
-  flex-shrink: 0; /* Prevents header from shrinking */
+  flex-shrink: 0; 
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 25px; /* Space between icons */
+  gap: 25px;
 }
 
 .ngo-badge {
@@ -137,9 +138,9 @@ body{
   cursor: pointer;
 }
 
-/* This is where the pages (Profile, Messages, etc.) will load */
+
 .page-content {
-  flex: 1; /* Fills remaining vertical space */
+  flex: 1; 
   padding: 30px;
-  overflow-y: auto; /* Adds scrolling ONLY to this area */
+  overflow-y: auto; 
 }

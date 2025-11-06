@@ -1,0 +1,196 @@
+
+:root {
+  --primary-blue: #0048d0;
+  --text-light-gray: #c0d0ff; 
+  --bg-light: #f9f9f9;
+  --border-light: #eee;
+  --white: #ffffff;
+}
+
+
+.volunteer-dashboard-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.volunteer-sidebar {
+  width: 260px;
+  background: var(--primary-blue);
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  flex-shrink: 0;
+  color: var(--white);
+}
+
+.sidebar-logo-container {
+  margin-bottom: 25px;
+  padding-left: 10px;
+}
+
+.sidebar-logo {
+  max-width: 160px;
+}
+
+
+.sidebar-profile {
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.sidebar-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 10px;
+}
+
+.sidebar-profile-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--white);
+}
+
+.sidebar-profile-role {
+  font-size: 0.9rem;
+  color: var(--text-light-gray);
+  margin: 5px 0 0 0;
+}
+
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin-bottom: 10px;
+}
+
+.nav-list li a {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: var(--text-light-gray);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-list li a svg {
+  margin-right: 18px;
+  font-size: 1.2rem;
+}
+
+.nav-list li a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--white);
+}
+
+
+.nav-list li.active a {
+  background-color: rgba(255, 255, 255, 0.1); 
+  color: var(--white);
+  position: relative;
+}
+
+.nav-list li.active a::before {
+  content: '';
+  position: absolute;
+  left: -25px; 
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: var(--white); 
+  border-radius: 0 4px 4px 0;
+}
+
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-light);
+  overflow: hidden;
+}
+
+.header {
+  height: 70px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.volunteer-badge {
+  background-color: #e8f8f5; 
+  color: #1abc9c;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.header-icon {
+  font-size: 1.4rem;
+  color: var(--text-light-gray);
+  cursor: pointer;
+}
+
+.header-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+}
+
+.page-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.logout-button{
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  gap: 15px; 
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1); 
+  border: 1px solid var(--text-light-gray);
+  color: var(--white);
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  
+}
+.logout-button :hover{
+  background-color: rgba(255, 255, 255, 0.1); /* Lighten on hover */
+  border-color: var(--white);
+}

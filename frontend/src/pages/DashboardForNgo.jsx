@@ -1,18 +1,24 @@
 import React from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation,useNavigate } from 'react-router-dom';
 
 import './DashboardForNgo.css';
 
 import logo from '../assets/images/logo.png';
 
 
-import { FaTachometerAlt, FaRegLightbulb, FaEnvelope, FaFileAlt, FaUser, FaBell } from 'react-icons/fa';
+import { FaTachometerAlt,FaSignOutAlt  ,FaRegLightbulb, FaEnvelope, FaFileAlt, FaUser, FaBell } from 'react-icons/fa';
 
 function DashboardForNgo() {
   
   const location = useLocation();
-
+  const navigate=useNavigate();
   const isActive = (path) => location.pathname.startsWith(path);
+
+  const handleLogout=()=>{
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userRole');
+    navigate('/login');
+  }
 
   return (
     
@@ -31,11 +37,7 @@ function DashboardForNgo() {
               <FaTachometerAlt /> <span>Dashboard</span>
             </Link>
           </li>
-          <li className={isActive('/dashboard/Applications') ? 'active' : ''}>
-            <Link to="/dashboard/Applications">
-              <FaRegLightbulb /> <span>Opportunities</span>
-            </Link>
-          </li>
+          
           <li className={isActive('/dashboard/messages') ? 'active' : ''}>
             <Link to="/dashboard/messages">
               <FaEnvelope /> <span>Messages</span>
@@ -52,7 +54,14 @@ function DashboardForNgo() {
             </Link>
           </li>
         </ul>
+        <div className="sidebar-footer">
+                  <button className="logout-button" onClick={handleLogout}>
+                    <FaSignOutAlt /> <span>Logout</span>
+                  </button>
+                </div>
+        
       </nav>
+      
 
       
       <main className="main-content">

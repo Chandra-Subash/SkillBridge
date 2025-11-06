@@ -8,6 +8,16 @@ import ProfileForNgo from "../pages/ProfileForNgo";
 import DashboardHome from "../pages/DashboardHome";
 
 import Applications from "../pages/Applications";
+import CreateOpportunity from "../pages/CreateOppurtunity";
+
+import DashboardForVolunteer from "../pages/DashboardForVolunteer";
+import DashboardHomeForvol from "../pages/DashboardHomeForvol";
+import ProfileForVolunteer from "../pages/ProfileForVolunteer";
+import OpportunityForVol from "../pages/OppurtunityForVol";
+import ProfileEditFormForVol from "../pages/ProfileEditFormForVol";
+
+import ProtectedDashboardLayout from "../pages/ProtectedDashboardLayout";
+import DashboardIndex from "../pages/DashboardIndex";
 
 function AppRoutes() {
   return (
@@ -20,14 +30,23 @@ function AppRoutes() {
         
       
 
-        <Route path="/dashboard" element={<DashboardForNgo/>}>
-          <Route index element={<DashboardHome/>}/>
+        <Route path="/dashboard" element={<ProtectedDashboardLayout/>}>
+          <Route index element={<DashboardIndex/>}/>
 
           <Route path="home" element={<DashboardHome/>}/>
           <Route path="profile" element={<ProfileForNgo/>}/>
           <Route path="profile/edit" element={<ProfileEditFormForNgo/>}/>
-          <Route path="Applications" element={<Applications/>}/>
+          <Route path="applications" element={<Applications/>}/>
+          <Route path="home/create" element={<CreateOpportunity/>}/>
+
+          <Route path="home-vol" element={<DashboardHomeForvol/>}/>
+          <Route path="profile-vol" element={<ProfileForVolunteer/>}/>
+          <Route path="profile-vol/edit-vol" element={<ProfileEditFormForVol/>}/>
+          <Route path="find-oppurt" element={<OpportunityForVol/>}/>
         </Route>
+
+        
+
 
 
        

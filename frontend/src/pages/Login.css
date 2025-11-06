@@ -1,10 +1,9 @@
-/* --- Import Fonts (from your CSS) --- */
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* --- CSS Variables --- */
 :root {
     --primary-color: #ffff;
-    --secondary-color: #0A2FB6; /* Main Blue */
+    --secondary-color: #0A2FB6; 
     --text-dark: #333;
     --text-light: #555;
     --border-color: #ccc;
@@ -24,7 +23,6 @@ body {
     overflow: hidden;
 }
 
-/* --- 1. Left Column (Form) --- */
 .login-form-section {
     flex-basis: 50%;
     background: var(--primary-color);
@@ -71,7 +69,7 @@ body {
     padding: 12px 15px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    box-sizing: border-box; /* Important */
+    box-sizing: border-box; 
     font-size: 1rem;
 }
 
@@ -135,7 +133,7 @@ body {
 .social-icon-container {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between icons */
+    gap: 20px;
     margin-bottom: 25px;
 }
 
@@ -165,7 +163,6 @@ body {
 }
 
 
-/* --- 2. Right Column (Image) --- */
 .login-image-section {
     flex-basis: 50%;
     background-color: var(--secondary-color);
@@ -209,13 +206,12 @@ body {
     line-height: 1.4;
 }
 
-/* --- Responsive for Mobile --- */
 @media (max-width: 900px) {
     .login-image-section {
-        display: none; /* Hide image column on small screens */
+        display: none;
     }
     .login-form-section {
-        flex-basis: 100%; /* Form takes full width */
+        flex-basis: 100%; 
     }
 }
 
