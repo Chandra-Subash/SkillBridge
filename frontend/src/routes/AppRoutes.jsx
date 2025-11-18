@@ -21,6 +21,9 @@ import MyApplications from "../pages/MyApplications";
 import ProtectedDashboardLayout from "../pages/ProtectedDashboardLayout";
 import DashboardIndex from "../pages/DashboardIndex";
 
+import MsgForNgo from "../pages/MsgForNgo";
+import MsgForVol from "../pages/MsgForVol";
+
 function AppRoutes() {
   return (
     <Router>
@@ -42,6 +45,7 @@ function AppRoutes() {
           <Route path="home/create" element={<CreateOpportunity />} />
           <Route path="home/edit/:id" element={<EditOpportunity />} /> {/* ✅ Added Edit route */}
           <Route path="opportunities" element={<Opportunities />} />
+          <Route path="messages" element={<MsgForNgo/>}/>
 
           {/* Volunteer Dashboard */}
           <Route path="home-vol" element={<DashboardHomeForvol />} />
@@ -49,6 +53,7 @@ function AppRoutes() {
           <Route path="profile-vol/edit-vol" element={<ProfileEditFormForVol />} />
           <Route path="find-oppurt" element={<OpportunityForVol />} />
           <Route path="my-applications" element={<MyApplications />} />
+          <Route path="messages-vol" element={<MsgForVol/>}/>
         </Route>
 
         {/* Default redirect */}

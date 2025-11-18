@@ -1,6 +1,6 @@
 const Application = require('../models/application.js');
 const Opportunity = require('../models/opportunity.js');
-
+const Message =require('../models/message.js');
 /**
  * @desc    Apply for an opportunity
  * @route   POST /api/applications/apply/:opportunityId
@@ -137,6 +137,21 @@ module.exports.updateApplicationStatus = async (req, res) => {
 
     application.status = status;
     await application.save();
+
+    if(status=='accepted'){
+      try{
+        const oppurtunityTitle=application.opportunity.title;
+        const welcomemsg=`Congratulations! your application for "${oppurtunityTitle}" has been accepted`;
+        await Message.create({
+          sender_id:req.user._id,
+          receiver_id:application.volunteer,
+          content:welcomemsg
+        });
+      }
+      catch(msgError){
+        console.error("Failed to send welcome msg",msgError);
+      }
+    }
 
     const updatedApp = await application.populate([
       { path: 'volunteer', select: 'name email' },

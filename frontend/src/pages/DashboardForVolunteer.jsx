@@ -97,7 +97,7 @@ function DashboardForVolunteer() {
   </li>
 
   <li className={isActive('/dashboard/messages') ? 'active' : ''}>
-    <Link to="/dashboard/messages">
+    <Link to="/dashboard/messages-vol">
       <FaEnvelope /> <span>Messages</span>
     </Link>
   </li>
