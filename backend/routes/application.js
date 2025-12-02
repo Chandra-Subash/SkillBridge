@@ -3,7 +3,7 @@ const router = express.Router();
 const applicationController = require('../controllers/application.controller.js');
 const { protect } = require('../middleware/auth.js');
 
-// Volunteer applies to an opportunity
+
 router.post(
   '/apply/:opportunityId',
   protect,

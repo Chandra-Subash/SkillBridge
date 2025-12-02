@@ -1,7 +1,7 @@
 const User = require('../models/user.js');
 const Application = require('../models/application.js');
 const Opportunity = require('../models/opportunity.js');
-const cloudinary = require('cloudinary').v2; // ✅ add this
+const cloudinary = require('cloudinary').v2; 
 
 exports.getUserProfile = async (req, res) => {
   try {
@@ -35,7 +35,7 @@ exports.updateUserProfile = async (req, res) => {
       }
     }
 
-    // ✅ multer-storage-cloudinary gives direct URL in req.file.path
+    //  multer-storage-cloudinary gives direct URL in req.file.path
     if (req.file && req.file.path) {
       user.avatarUrl = req.file.path;
     }

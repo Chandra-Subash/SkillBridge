@@ -10,10 +10,10 @@ import {
   FaEnvelope, 
   FaFileAlt, 
   FaUser, 
-  FaBell,
+
   FaBriefcase 
 } from 'react-icons/fa';
-
+import Notification from './Notification.jsx';
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
 function DashboardForNgo() {
@@ -21,7 +21,7 @@ function DashboardForNgo() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  // ✅ Load logged-in NGO profile
+  //  Load logged-in NGO profile
   useEffect(() => {
     const fetchProfile = async () => {
       const token = localStorage.getItem('authToken');
@@ -51,7 +51,7 @@ function DashboardForNgo() {
 
   const isActive = (path) => location.pathname.startsWith(path);
 
-  // ✅ Logout handler
+  // Logout handler
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userRole');
@@ -126,7 +126,7 @@ function DashboardForNgo() {
         <header className="header">
           <div className="header-right">
             <span className="ngo-badge">NGO</span>
-            <FaBell className="header-icon" />
+            <Notification/>
             <img
               src={user?.avatarUrl}
               alt="Avatar"

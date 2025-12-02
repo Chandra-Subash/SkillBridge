@@ -1,3 +1,5 @@
+//for ngo
+
 import React, { useState, useEffect } from 'react';
 import './DashboardHome.css'; 
 import { FaPlus, FaRegCommentDots } from 'react-icons/fa';

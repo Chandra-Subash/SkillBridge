@@ -30,7 +30,7 @@ const Login = () => {
                 body: JSON.stringify({ email, password }),
             });
 
-            const data = await response.json();
+            const data = await response.json();       //reads data from backend
 
             if (!response.ok) {
                 throw new Error(data.error || 'Login failed');

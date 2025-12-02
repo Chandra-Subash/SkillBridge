@@ -33,7 +33,7 @@ function DashboardHomeForvol() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 🔹 Fetch dashboard stats & volunteer data
+  //  Fetch dashboard stats & volunteer data
   useEffect(() => {
     const loadStatsAndSkills = async () => {
       setIsLoading(true);
@@ -57,7 +57,7 @@ function DashboardHomeForvol() {
         }
 
         setStats(data.stats || {});
-        setVolunteerSkills(data.skills || []); // Assuming backend returns user's skills
+        setVolunteerSkills(data.skills || []); 
       } catch (err) {
         console.error("Error loading dashboard data:", err);
         setError(err.message);
@@ -69,7 +69,7 @@ function DashboardHomeForvol() {
     loadStatsAndSkills();
   }, []);
 
-  // 🔹 Fetch opportunities
+  // Fetch opportunities
   useEffect(() => {
     const fetchOpportunities = async () => {
       const token = localStorage.getItem('authToken');
@@ -81,10 +81,9 @@ function DashboardHomeForvol() {
 
         let allOpps = data.opportunities || [];
 
-        // 🔹 Sort latest first
         allOpps = allOpps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-        // 🔹 Separate matches and non-matches
+        
         const matches = [];
         const others = [];
 
@@ -96,7 +95,7 @@ function DashboardHomeForvol() {
           else others.push(opp);
         }
 
-        // 🔹 Pick top 2 (prefer matches)
+       
         const selected = matches.slice(0, 2);
         if (selected.length < 2) {
           selected.push(...others.slice(0, 2 - selected.length));
@@ -110,7 +109,7 @@ function DashboardHomeForvol() {
     fetchOpportunities();
   }, [volunteerSkills]);
 
-  // 🔹 Loading and error states
+
   if (isLoading) return <div className="loading-message">Loading Dashboard...</div>;
   if (error) return <div className="error-message">{error}</div>;
 
@@ -118,7 +117,7 @@ function DashboardHomeForvol() {
     <div className="volunteer-home-main">
       <h1>Dashboard</h1>
       
-      {/* Your Impact Section */}
+      
       <div className="dashboard-section-card">
         <h2 className="card-title">Your Impact</h2>
         <div className="impact-card-grid">
@@ -141,7 +140,7 @@ function DashboardHomeForvol() {
         </div>
       </div>
 
-      {/* Opportunities Section */}
+      
       <div className="dashboard-section-card">
         <div className="card-header">
           <h2 className="card-title">Recommended Opportunities</h2>
@@ -161,7 +160,6 @@ function DashboardHomeForvol() {
           )}
         </div>
 
-        {/* 🔹 Button at bottom */}
         <div style={{ textAlign: 'center', marginTop: '1rem' }}>
           <Link to="/dashboard/find-oppurt" className="browse-all-btn">
             Browse All Opportunities
@@ -169,7 +167,7 @@ function DashboardHomeForvol() {
         </div>
       </div>
 
-      {/* Messages Section */}
+     
       <div className="dashboard-section-card">
         <div className="card-header">
           <h2 className="card-title">Recent Messages</h2>

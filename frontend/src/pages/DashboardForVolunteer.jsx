@@ -6,7 +6,7 @@ import logo from '../assets/images/logo.png';
 import defaultAvatar from '../assets/images/pic.png'; 
 
 import { FaTachometerAlt, FaRegLightbulb, FaEnvelope, FaUser, FaBell, FaSignOutAlt, FaFileAlt } from 'react-icons/fa';
-
+import Notification from './Notification.jsx';
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
 function DashboardForVolunteer() {
@@ -122,6 +122,7 @@ function DashboardForVolunteer() {
         <header className="header">
           <div className="header-right">
             <span className="volunteer-badge">Volunteer</span>
+            <Notification/>
             <FaBell className="header-icon" />
             <img 
               src={user?.avatarUrl || defaultAvatar} 

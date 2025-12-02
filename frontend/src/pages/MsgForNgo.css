@@ -1,4 +1,3 @@
-/* --- Global Variables --- */
 :root {
   --primary-blue: #0048d0;
   --text-dark: #333;
@@ -10,19 +9,17 @@
   --bubble-received-bg: #f0f0f0;
 }
 
-/* --- Main Container --- */
 .msg-container-ngo {
   display: flex;
   width: 100%;
   height: 85vh;
   max-height: 800px;
-  background: var(--card-bg);
+  margin:-10px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
-/* --- Left Panel (Chat List) --- */
 .msg-left-ngo {
   width: 35%;
   max-width: 350px;
@@ -31,6 +28,9 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background: var(--card-bg);
+  box-shadow: 0 4px 8px 0 rgba(69, 67, 67, 0.5);
+  
 }
 
 .msg-left-ngo h1 {
@@ -40,25 +40,28 @@
   margin: 0;
   padding: 30px;
   flex-shrink: 0;
+  background: var(--card-bg);
 }
 
 .msg-search-ngo {
   position: relative;
   padding: 0 30px 20px 30px;
   flex-shrink: 0;
+  
+  background: var(--card-bg);
 }
 
 .msg-search-icon {
   position: absolute;
   left: 45px;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   color: var(--text-light);
 }
 
 .msg-sear-ngo {
-  width: 100%;
-  padding: 12px 15px 12px 40px; 
+ 
+  padding: 12px 60px 12px 40px; 
   border-radius: 8px;
   border: 1px solid var(--border-light);
   background: var(--page-bg);
@@ -73,6 +76,7 @@
 .msg-chat-list-ngo {
   flex-grow: 1;
   overflow-y: auto;
+  background: var(--card-bg);
 }
 
 .msg-chat-list-item-ngo {
@@ -131,13 +135,13 @@
 }
 
 
-/* --- Right Panel (Chat Window) --- */
 .msg-right-ngo {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: var(--page-bg); 
+  background-color: var(--card-bg); 
   overflow: hidden;
+  box-shadow: 0 4px 8px 0 rgba(100, 96, 96, 0.5);
 }
 
 .msg-top-ngo {
@@ -162,6 +166,7 @@
   font-weight: 600;
   margin: 0;
   color: var(--text-dark);
+  
 }
 .msg-header-info-ngo p {
   font-size: 0.9rem;
@@ -185,14 +190,12 @@
   overflow-y: auto;
 }
 
-/* --- Message Bubble Styles (FIXED FOR NGO) --- */
 .msg-message-bubble-wrapper-ngo {
   display: flex;
   margin-bottom: 15px;
 }
 
-/* --- THIS IS THE FIX --- */
-/* Your SENT messages (as an 'ngo') go to the RIGHT */
+
 .msg-message-bubble-wrapper-ngo.ngo {
   justify-content: flex-end;
 }
@@ -201,7 +204,9 @@
   justify-content: flex-start;
 }
 /* ------------------------ */
-
+.volunteer{
+  background: var(--card-bg);
+}
 .msg-message-bubble-ngo {
   max-width: 70%;
   padding: 12px 18px;
@@ -219,8 +224,7 @@
   display: block;
 }
 
-/* --- THIS IS THE FIX --- */
-/* Your SENT bubble (blue) */
+
 .msg-message-bubble-wrapper-ngo.ngo .msg-message-bubble-ngo {
   background: var(--bubble-sent-bg);
   color: white;
@@ -238,10 +242,7 @@
 .msg-message-bubble-wrapper-ngo.volunteer .msg-message-bubble-ngo span {
   text-align: left;
 }
-/* ------------------------ */
 
-
-/* --- Message Input Area --- */
 .msg-msging-ngo {
   display: flex;
   align-items: center;
@@ -302,7 +303,6 @@
   font-weight: 500;
 }
 
-/* --- Error Message Styling --- */
 .error-message {
   color: red;
   background-color: #ffebee;
@@ -311,4 +311,9 @@
   border-radius: 5px;
   margin-bottom: 15px;
   text-align: center;
+}
+
+.middle{
+  margin: 20px;
+  background: var(--page-bg);
 }

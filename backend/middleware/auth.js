@@ -45,4 +45,3 @@ module.exports.protect = async (req, res, next) => {
         res.status(401).json({ error: 'Not authorized, no token provided' });
     }
 };
-

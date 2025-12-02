@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const messageSchema = new mongoose.Schema({
     sender_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Links to your 'User' model
+        ref: 'User', 
         required: true
     },
     receiver_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Links to your 'User' model
+        ref: 'User', 
         required: true
     },
     content: {
@@ -17,7 +17,6 @@ const messageSchema = new mongoose.Schema({
         trim: true
     }
 }, {
-    // timestamp: true (default: current timestamp)
     timestamps: true 
 });
 

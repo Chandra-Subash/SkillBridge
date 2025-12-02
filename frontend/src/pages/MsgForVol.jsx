@@ -6,20 +6,16 @@ import { BsThreeDotsVertical, BsPlusCircle } from 'react-icons/bs';
 import { FiSend } from 'react-icons/fi';
 import io from 'socket.io-client';
 
-// Get API and Socket URLs
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 const SOCKET_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
-// Initialize the socket connection
 const socket = io(SOCKET_URL, {
     auth: {
         token: localStorage.getItem('authToken')
     }
 });
 
-// --- Chat List Item (Left Sidebar) ---
 const ChatListItem = ({ chat, onSelectChat, selected }) => (
-    // 2. Use 'msg-' class names
     <div 
         className={`msg-chat-list-item ${selected ? 'selected' : ''}`} 
         onClick={() => onSelectChat(chat)}
@@ -38,10 +34,8 @@ const ChatListItem = ({ chat, onSelectChat, selected }) => (
     </div>
 );
 
-// --- Chat Bubble (Right Panel) ---
 const MessageBubble = ({ message, currentUserId }) => {
     const isSender = message.sender_id?._id === currentUserId;
-    // Volunteer is the sender ('volunteer'), NGO is the receiver ('ngo')
     const senderType = isSender ? 'volunteer' : 'ngo'; 
     
     return (
@@ -54,7 +48,6 @@ const MessageBubble = ({ message, currentUserId }) => {
     );
 };
 
-// --- Main Messages Component ---
 function MsgForVol() {
     const [myId, setMyId] = useState(null);
     const [conversations, setConversations] = useState([]);
@@ -131,11 +124,9 @@ function MsgForVol() {
         loadMessages();
     }, [selectedChat]); 
 
-    // Listen for NEW messages from WebSocket
-    // Listen for NEW messages from WebSocket
+   
     useEffect(() => {
-        // We can't do anything if we don't know who we are (myId)
-        // or what chat we are looking at (selectedChat)
+      
         if (!myId || !selectedChat) {
             return; 
         }
@@ -143,7 +134,7 @@ function MsgForVol() {
         function onReceiveMessage(newMessage) {
             console.log("Received new message:", newMessage);
 
-            // --- 1. GET THE STRING IDs (THE FIX) ---
+            
             // Use optional chaining just in case, like you do in MessageBubble
             const senderId = newMessage.sender_id?._id || newMessage.sender_id;
             const receiverId = newMessage.receiver_id?._id || newMessage.receiver_id;
@@ -151,9 +142,7 @@ function MsgForVol() {
             // Get the ID of the person we are currently chatting with
             const currentChatPartnerId = selectedChat._id;
 
-            // --- 2. MORE ROBUST LOGIC ---
-            // This check ensures the message is *for the currently open chat*
-            // (From them to me) OR (From me to them)
+         
             if (
                 (senderId === currentChatPartnerId && receiverId === myId) ||
                 (senderId === myId && receiverId === currentChatPartnerId)
@@ -174,9 +163,7 @@ function MsgForVol() {
             socket.off('chatError');
         };
 
-    // --- 3. ADD myId TO THE DEPENDENCIES ---
-    // This ensures the effect re-runs when myId is finally loaded
-    }, [selectedChat, myId, socket]); // Include socket just to be safe, though it's constant
+    }, [selectedChat, myId, socket]); 
 
     // Auto-scroll to bottom
     useEffect(() => {
@@ -206,7 +193,6 @@ function MsgForVol() {
         // 3. Use 'msg-container' class
         <div className="msg-container">
             
-            {/* --- Left Panel (Chat List) --- */}
             <div className="msg-left">
                 <h1>Messages</h1>
                 <div className="msg-search">
@@ -231,8 +217,7 @@ function MsgForVol() {
                     )}
                 </div>
             </div>
-            
-            {/* --- Right Panel (Chat Window) --- */}
+            <div className='middle'></div>
             <div className="msg-right">
                 {selectedChat ? (
                     <>

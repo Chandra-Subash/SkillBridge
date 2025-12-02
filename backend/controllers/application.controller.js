@@ -15,13 +15,11 @@ module.exports.applyToOpportunity = async (req, res) => {
     const { opportunityId } = req.params;
     const volunteerId = req.user._id;
 
-    // Check if opportunity exists and is open
     const opportunity = await Opportunity.findById(opportunityId);
     if (!opportunity || opportunity.status !== 'open') {
       return res.status(404).json({ error: 'Opportunity not found or is closed.' });
     }
 
-    // Prevent duplicate applications
     const existingApplication = await Application.findOne({
       opportunity: opportunityId,
       volunteer: volunteerId
@@ -130,7 +128,7 @@ module.exports.updateApplicationStatus = async (req, res) => {
       return res.status(404).json({ error: 'Application not found.' });
     }
 
-    // Ensure this NGO owns the opportunity
+    
     if (application.opportunity.ngo.toString() !== req.user._id.toString()) {
       return res.status(403).json({ error: 'Forbidden: You do not have permission to update this application.' });
     }

@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './MsgForNgo.css'; // This will import the matching CSS
+import './MsgForNgo.css'; 
 import { FaSearch } from 'react-icons/fa';
 import { BsThreeDotsVertical, BsPlusCircle } from 'react-icons/bs';
 import { FiSend } from 'react-icons/fi';
-import io from 'socket.io-client'; // 1. Import socket.io-client
+import io from 'socket.io-client'; 
 
-// Get API and Socket URLs
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
-// Use the base URL for the socket connection
 const SOCKET_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
-// --- Chat List Item (Left Sidebar) ---
 const ChatListItem = ({ chat, onSelectChat, selected }) => (
     <div 
         className={`msg-chat-list-item ${selected ? 'selected' : ''}`} 
@@ -30,7 +27,6 @@ const ChatListItem = ({ chat, onSelectChat, selected }) => (
     </div>
 );
 
-// --- Chat Bubble (Right Panel) ---
 const MessageBubble = ({ message, currentUserId }) => {
     const isSender = message.sender_id?._id === currentUserId;
     const senderType = isSender ? 'ngo' : 'volunteer'; 
@@ -46,7 +42,6 @@ const MessageBubble = ({ message, currentUserId }) => {
 };
 
 
-// --- Main Messages Component ---
 function MsgForNgo() {
     const [myId, setMyId] = useState(null); 
     const [conversations, setConversations] = useState([]); 
@@ -56,12 +51,10 @@ function MsgForNgo() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     
-    // --- 1. Create a state to hold the socket ---
     const [socket, setSocket] = useState(null);
 
     const chatBodyRef = useRef(null);
 
-    // --- 2. Create and manage the socket connection ---
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         if (!token) {
@@ -78,10 +71,8 @@ function MsgForNgo() {
             autoConnect: true
         });
 
-        // Save the socket to state
         setSocket(newSocket);
 
-        // --- 3. Set up connection error listeners ---
         newSocket.on('connect_error', (err) => {
             console.error('Socket Connection Error:', err.message);
             setError(`Chat Error: ${err.message}. Try logging in again.`);
@@ -91,19 +82,16 @@ function MsgForNgo() {
             console.log('Socket connected successfully:', newSocket.id);
         });
 
-        // 4. Clean up the socket connection when the component unmounts
         return () => {
             console.log("Disconnecting socket...");
             newSocket.disconnect();
         };
-    }, []); // This effect runs only once when the component mounts
+    }, []); 
 
-    // --- Load initial conversations (REST API) ---
     useEffect(() => {
         // This logic is fine, it fetches the chat list
         const loadData = async () => {
-            // ... (rest of your loadData logic is correct) ...
-// ... (your existing loadData logic) ...
+           
             const token = localStorage.getItem('authToken');
             if (!token) {
                 setError("Not authorized");
@@ -143,10 +131,8 @@ function MsgForNgo() {
         loadData();
     }, []);
 
-    // --- Load message history when a chat is selected (REST API) ---
     useEffect(() => {
-        // ... (this logic is correct) ...
-// ... (your existing loadMessages logic) ...
+      
         const loadMessages = async () => {
             if (!selectedChat) return;
             
@@ -168,10 +154,8 @@ function MsgForNgo() {
         loadMessages();
     }, [selectedChat]); 
 
-    // --- Listen for NEW messages from WebSocket ---
-   // --- Listen for NEW messages from WebSocket ---
     useEffect(() => {
-        // 1. Wait until socket, myId, AND selectedChat are all loaded
+        
         if (!socket || !myId || !selectedChat) {
             return; 
         }
@@ -183,11 +167,8 @@ function MsgForNgo() {
             const senderId = newMessage.sender_id?._id || newMessage.sender_id;
             const receiverId = newMessage.receiver_id?._id || newMessage.receiver_id;
 
-            // Get the ID of the person we are currently chatting with
             const currentChatPartnerId = selectedChat._id;
 
-            // 3. Correct logic:
-            // (Message is from me TO them) OR (Message is from them TO me)
             if (
                 (senderId === myId && receiverId === currentChatPartnerId) ||
                 (senderId === currentChatPartnerId && receiverId === myId)
@@ -207,9 +188,9 @@ function MsgForNgo() {
             socket.off('chatError');
         };
 
-    // 4. Add myId to the dependency array (THE FIX)
+    
     }, [socket, selectedChat, myId]);
-    // Auto-scroll to bottom
+   
     useEffect(() => {
         if (chatBodyRef.current) {
             chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
@@ -220,10 +201,8 @@ function MsgForNgo() {
         setSelectedChat(chat);
     };
 
-    // --- Send message via WebSocket ---
     const handleSendMessage = (e) => {
         e.preventDefault();
-        // 6. Check if socket is connected before sending
         if (newMessage.trim() === "" || !selectedChat || !socket) return;
 
         console.log(`Sending message to: ${selectedChat.name}`);
@@ -266,6 +245,7 @@ function MsgForNgo() {
                     )}
                 </div>
             </div>
+            <div className='middle'></div>
             
             <div className="msg-right-ngo">
                 {selectedChat ? (
