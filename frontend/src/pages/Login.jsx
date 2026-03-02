@@ -9,7 +9,7 @@ import facebook from '../assets/images/facebook.png';
 import apple from '../assets/images/apple.png';
 import loginPic from '../assets/images/Home.jpg'; 
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://skillbridge-1-w0np.onrender.com'; 
+const API_URL = process.env.REACT_APP_API_URL || 'https://skillbridge-1-w0np.onrender.com/api'; 
 
 const Login = () => {
     
