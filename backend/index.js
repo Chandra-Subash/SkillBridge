@@ -43,7 +43,7 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 
-app.use(cors({ origin: 'http://localhost:3000' })); 
+app.use(cors({ origin: 'https://skillbridge-2-k3rx.onrender.com' })); 
 app.use(express.json());
 
 app.use('/uploads', express.static('uploads'));
@@ -66,7 +66,7 @@ app.use((err, req, res, next) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000", 
+    origin: "https://skillbridge-2-k3rx.onrender.com", 
     methods: ["GET", "POST"]
   }
 });
