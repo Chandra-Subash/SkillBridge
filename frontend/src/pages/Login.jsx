@@ -10,6 +10,8 @@ import loginPic from '../assets/images/Home.jpg';
 
 const API_URL = process.env.REACT_APP_API_URL || 'https://skillbridge-1-w0np.onrender.com/api'; 
 
+
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
